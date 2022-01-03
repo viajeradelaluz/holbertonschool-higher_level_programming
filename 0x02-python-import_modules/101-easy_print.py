@@ -1,2 +1,2 @@
 #!/usr/bin/python3
-__import__("click").echo("#pythoniscool")
+__import__('click').echo(b'#pythoniscool')
