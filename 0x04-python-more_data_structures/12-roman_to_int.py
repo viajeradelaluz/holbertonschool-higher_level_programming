@@ -14,8 +14,8 @@ def roman_to_int(roman_string):
 
     last = len(int_num)
     if last >= 1:
-        if int_num[last - 1] > int_num[last - 2]:
-            int_num[last - 2] *= -1
-            return sum(int_num)
+        for i in range(last - 1):
+            if int_num[i] < int_num[i + 1]:
+                int_num[i] *= -1
 
     return sum(int_num)
