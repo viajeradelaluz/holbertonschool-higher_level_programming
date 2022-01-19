@@ -46,8 +46,12 @@ class Square:
         area_value = self.__size ** 2
         print_size = "#" * self.__size
 
+        if self.__position[1] > 0:
+            print("{}".format("\n" * self.__position[1]), end="")
+
         counter = 1
         while counter <= area_value:
+
             if counter <= self.__size:
-                print("{}{}".format(" " * self.position[0], print_size))
+                print("{}{}".format(" " * self.__position[0], print_size))
             counter += 1
