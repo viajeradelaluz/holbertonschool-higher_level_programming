@@ -1,5 +1,6 @@
 #!/usr/bin/python
 
+
 """
     Set an empty class.
     """
