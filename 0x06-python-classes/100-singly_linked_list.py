@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""" Handles single linked list """
+""" Handles a singly linked list """
 
 
 class Node:
@@ -44,14 +44,13 @@ class SinglyLinkedList:
         new = Node(value)
 
         traverse = self.__head
-        if traverse is None or traverse.data >= value:
-            if traverse:
-                new.next_node = traverse
+        if traverse is None or traverse.data > value:
+            new.next_node = traverse
             self.__head = new
             return
 
         while traverse.next_node:
-            if traverse.next_node.data >= value:
+            if traverse.next_node.data > value:
                 break
             traverse = traverse.next_node
 
@@ -60,12 +59,13 @@ class SinglyLinkedList:
 
     def __str__(self):
         to_print = ""
-        traverse = self.__head
 
-        while traverse:
-            to_print += str(traverse)
+        traverse = self.__head
+        while traverse is not None:
+            to_print += str(traverse.data)
             if traverse.next_node is not None:
                 to_print += "\n"
-                traverse = traverse.next_node
+
+            traverse = traverse.next_node
 
         return to_print
