@@ -20,6 +20,7 @@ Passing more than one argument to area method:
 
 Checking integer validator method:
     >>> bg.integer_validator("ten", 10)
+    >>> bg.integer_validator("", 8)
 
 Checking for non integer types:
     >>> bg.integer_validator("tuple", ())
@@ -33,6 +34,26 @@ Checking for non integer types:
     >>> bg.integer_validator("float", 3.2)
     Traceback (most recent call last):
     TypeError: float must be an integer
+
+    >>> bg.integer_validator("dict", {'one': 1, 'two': 2})
+    Traceback (most recent call last):
+    TypeError: dict must be an integer
+
+    >>> bg.integer_validator("list", [5])
+    Traceback (most recent call last):
+    TypeError: list must be an integer
+
+    >>> bg.integer_validator("True", True)
+    Traceback (most recent call last):
+    TypeError: True must be an integer
+
+    >>> bg.integer_validator("False", False)
+    Traceback (most recent call last):
+    TypeError: False must be an integer
+
+    >>> bg.integer_validator(None)
+    Traceback (most recent call last):
+    TypeError: integer_validator() missing 1 required positional argument: 'value'
 
 Checking for 0 and negative numbers:
     >>> bg.integer_validator("zero", 0)
