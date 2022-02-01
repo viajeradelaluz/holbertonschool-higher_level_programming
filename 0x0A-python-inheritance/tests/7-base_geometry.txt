@@ -55,6 +55,10 @@ Checking for non integer types:
     Traceback (most recent call last):
     TypeError: set must be an integer
 
+    >>> bg.integer_validator("None", None)
+    Traceback (most recent call last):
+    TypeError: None must be an integer
+
     >>> bg.integer_validator(None)
     Traceback (most recent call last):
     TypeError: integer_validator() missing 1 required positional argument: 'value'
@@ -69,6 +73,10 @@ Checking for 0 and negative numbers:
     ValueError: negative must be greater than 0
 
 Checking for more than one argument:
+    >>> bg.integer_validator("numbers", 5, 9)
+    Traceback (most recent call last):
+    TypeError: integer_validator() takes 3 positional arguments but 4 were given
+
     >>> bg.integer_validator("five", 5, "two", 2)
     Traceback (most recent call last):
     TypeError: integer_validator() takes 3 positional arguments but 5 were given
