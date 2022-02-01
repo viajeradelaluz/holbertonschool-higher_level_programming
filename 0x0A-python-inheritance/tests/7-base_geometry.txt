@@ -51,6 +51,10 @@ Checking for non integer types:
     Traceback (most recent call last):
     TypeError: False must be an integer
 
+    >>> bg.integer_validator("set", {2, 3})
+    Traceback (most recent call last):
+    TypeError: set must be an integer
+
     >>> bg.integer_validator(None)
     Traceback (most recent call last):
     TypeError: integer_validator() missing 1 required positional argument: 'value'
