@@ -23,7 +23,7 @@ Checking integer validator method:
     >>> bg.integer_validator("", 8)
 
 Checking for non integer types:
-    >>> bg.integer_validator("tuple", ())
+    >>> bg.integer_validator("tuple", (2, 4))
     Traceback (most recent call last):
     TypeError: tuple must be an integer
 
