@@ -15,5 +15,4 @@ try:
     my_list = load_from_json_file(filename)
 except FileNotFoundError:
     my_list = []
-
 save_to_json_file(my_list + sys.argv[1:], filename)
