@@ -17,7 +17,7 @@ class Student():
 
         new_dict = {}
 
-        if attrs == None:
+        if attrs is None:
             return self.__dict__
 
         for attr in attrs:
