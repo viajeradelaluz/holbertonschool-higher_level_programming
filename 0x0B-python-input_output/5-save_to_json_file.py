@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Save Object to a file 
+"""Save Object to a file
 
 Contains the save_to_json_file method.
     """
