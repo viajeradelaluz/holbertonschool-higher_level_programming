@@ -133,6 +133,8 @@ class TestSquare(unittest.TestCase):
             r = Square(15, (4, 8))
         with self.assertRaises(TypeError):
             r = Square(15, '7', 6)
+        with self.assertRaises(TypeError):
+            r = Square(15, 7, '6')
 
     def test_square_instance_negative_x_y(self):
         """ Test a Square instance with negative at x or y
@@ -236,7 +238,9 @@ class TestSquare(unittest.TestCase):
             """
         r = Square(15, 1, 2, 10)
         r_dict = r.to_dictionary()
+        dict_r = {'id': 10, 'size': 15, 'x': 1, 'y': 2, }
         self.assertIsInstance(r_dict, dict)
+        self.assertDictEqual(r_dict, dict_r)
 
     def test_square_to_dictionary_arguments(self):
         """ Test if to_dictionary method receives arguments

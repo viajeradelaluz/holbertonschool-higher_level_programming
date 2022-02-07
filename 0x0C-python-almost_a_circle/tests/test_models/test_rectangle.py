@@ -30,7 +30,6 @@ class TestRectangle(unittest.TestCase):
             """
         self.assertTrue(Rectangle.__doc__)
 
-
     def test_methods_documentation(self):
         """ Test if all Rectangle methods are documented
             """
@@ -144,6 +143,8 @@ class TestRectangle(unittest.TestCase):
             r = Rectangle(15, 4, (4, 8))
         with self.assertRaises(TypeError):
             r = Rectangle(15, 4, '7', 6)
+        with self.assertRaises(TypeError):
+            r = Rectangle(1, 2, 3, '4')
 
     def test_rectangle_instance_negative_x_y(self):
         """ Test a rectangle instance with negative at x or y
@@ -249,7 +250,9 @@ class TestRectangle(unittest.TestCase):
             """
         r = Rectangle(15, 9, 1, 2, 10)
         r_dict = r.to_dictionary()
+        dict_r = {'x': 1, 'y': 2, 'id': 10, 'height': 9, 'width': 15}
         self.assertIsInstance(r_dict, dict)
+        self.assertDictEqual(r_dict, dict_r)
 
     def test_rectangle_to_dictionary_arguments(self):
         """ Test if to_dictionary method receives arguments
