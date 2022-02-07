@@ -3,6 +3,7 @@
     """
 
 import unittest
+import pep8
 from io import StringIO
 from unittest.mock import patch
 from models import rectangle
@@ -27,6 +28,14 @@ class TestRectangle(unittest.TestCase):
         """ Test if Rectangle class is documented
             """
         self.assertTrue(Rectangle.__doc__)
+
+    def test_pep8_conformance(self):
+        """ Test that we conform to PEP8
+            """
+        pep8style = pep8.StyleGuide(quiet=True)
+        result = pep8style.check_files(['models/rectangle.py'])
+        self.assertEqual(result.total_errors, 0,
+                         "Found code style errors (and warnings).")
 
     def test_rectangle_simple_instance(self):
         """ Test a rectangle instance only with width and height

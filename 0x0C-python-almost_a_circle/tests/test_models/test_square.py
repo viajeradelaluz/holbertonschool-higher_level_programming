@@ -3,6 +3,7 @@
     """
 
 import unittest
+import pep8
 from io import StringIO
 from unittest.mock import patch
 from models import square
@@ -27,6 +28,14 @@ class TestSquare(unittest.TestCase):
         """ Test if Square class is documented
             """
         self.assertTrue(Square.__doc__)
+
+    def test_pep8_conformance(self):
+        """ Test that we conform to PEP8
+            """
+        pep8style = pep8.StyleGuide(quiet=True)
+        result = pep8style.check_files(['models/square.py'])
+        self.assertEqual(result.total_errors, 0,
+                         "Found code style errors (and warnings).")
 
     def test_square_simple_instance(self):
         """ Test a Square instance only with size

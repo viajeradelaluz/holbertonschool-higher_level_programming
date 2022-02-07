@@ -3,6 +3,7 @@
     """
 
 import unittest
+import pep8
 from models import base
 from models.base import Base
 from models.square import Square
@@ -26,6 +27,14 @@ class TestBase(unittest.TestCase):
         """ Test if Base class is documented
             """
         self.assertTrue(Base.__doc__)
+
+    def test_pep8_conformance(self):
+        """ Test that we conform to PEP8
+            """
+        pep8style = pep8.StyleGuide(quiet=True)
+        result = pep8style.check_files(['models/base.py'])
+        self.assertEqual(result.total_errors, 0,
+                         "Found code style errors (and warnings).")
 
     def test_basic_base_assigment(self):
         """ Create a basic Base instance
