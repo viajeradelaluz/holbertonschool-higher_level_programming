@@ -52,6 +52,15 @@ class TestSquare(unittest.TestCase):
         with self.assertRaises(TypeError):
             r = Square()
 
+    def test_private_attr_access(self):
+        """ Test private attributes can't be accessed
+            """
+        with self.assertRaises(AttributeError):
+            print(Square.__size)
+            print(Square.size)
+            print(Rectangle.__x)
+            print(Rectangle.__y)
+
     def test_square_instance_update_id(self):
         """ Test a Square instance updating the value for id
             """
@@ -198,6 +207,12 @@ class TestSquare(unittest.TestCase):
         r.update(id=25, size=14)
         self.assertEqual(r.id, 25)
         self.assertEqual(r.size, 14)
+
+    def test_update_mixing_args_kwargs(self):
+        """ Test update method mixing args and kwargs
+            """
+        r = Square(32)
+        self.assertFalse(r.update(10, 22, x=2, y=5))
 
     def test_square_to_dictionary_method(self):
         """ Test to_dictionary method for a Square instance

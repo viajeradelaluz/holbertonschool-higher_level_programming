@@ -54,6 +54,15 @@ class TestRectangle(unittest.TestCase):
         with self.assertRaises(TypeError):
             r = Rectangle(6)
 
+    def test_private_attr_access(self):
+        """ Test private attributes can't be accessed
+            """
+        with self.assertRaises(AttributeError):
+            print(Rectangle.__width)
+            print(Rectangle.__height)
+            print(Rectangle.__x)
+            print(Rectangle.__y)
+
     def test_rectangle_instance_update_id(self):
         """ Test a rectangle instance updating the value for id
             """
@@ -210,6 +219,12 @@ class TestRectangle(unittest.TestCase):
         r.update(id=25, width=18)
         self.assertEqual(r.id, 25)
         self.assertEqual(r.width, 18)
+
+    def test_update_mixing_args_kwargs(self):
+        """ Test update method mixing args and kwargs
+            """
+        r = Rectangle(56, 32)
+        self.assertFalse(r.update(10, 22, 32, x=2, y=5))
 
     def test_rectangle_to_dictionary_method(self):
         """ Test to_dictionary method for a Rectangle instance

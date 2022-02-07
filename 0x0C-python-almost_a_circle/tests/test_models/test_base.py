@@ -49,6 +49,13 @@ class TestBase(unittest.TestCase):
         b = Base(10)
         self.assertEqual(b.id, 10)
 
+    def test_private_attr_access(self):
+        """ Test private attributes can't be accesse
+            """
+        with self.assertRaises(AttributeError):
+            print(Base.__nb_objects)
+            print(Base.nb_objects)
+
     def test_mix_base_assigment_id(self):
         """ Create multiple Base instances with and without id
             """
