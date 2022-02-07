@@ -19,12 +19,12 @@ class TestRectangle(unittest.TestCase):
         Base._Base__nb_objects = 0
 
     def test_module_documentation(self):
-        """ Test if base module is documented
+        """ Test if rectangle module is documented
             """
         self.assertTrue(rectangle.__doc__)
 
     def test_class_documentation(self):
-        """ Test if Base class is documented
+        """ Test if Rectangle class is documented
             """
         self.assertTrue(Rectangle.__doc__)
 
@@ -62,7 +62,7 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(r.id, 91)
 
     def test_rectangle_instance_wrong_type_width_height(self):
-        """ Test a rectangle instance with a string
+        """ Test a rectangle instance with a wrong data type
             """
         with self.assertRaises(TypeError):
             r = Rectangle('10', 2)
@@ -84,7 +84,7 @@ class TestRectangle(unittest.TestCase):
             r = Rectangle(18, 0)
 
     def test_rectangle_instance_negative_width_height(self):
-        """ Test a rectangle instance wit negativa at width or height
+        """ Test a rectangle instance with negative at width or height
             """
         with self.assertRaises(ValueError):
             r = Rectangle(-8, 3)
