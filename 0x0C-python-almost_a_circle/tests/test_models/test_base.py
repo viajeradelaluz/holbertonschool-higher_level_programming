@@ -5,6 +5,7 @@
 import unittest
 import pep8
 import inspect
+import json
 from models import base
 from models.square import Square
 from os.path import exists as file_exists
@@ -101,7 +102,18 @@ class TestBase(unittest.TestCase):
         r = Square(15, 7, 6, 30)
         r_dict = r.to_dictionary()
         json_str = Base.to_json_string([r_dict])
+
         self.assertIsInstance(json_str, str)
+        dict_r = json.loads(json_str)
+        self.assertEqual(dict_r, [r_dict])
+
+    def test_save_to_file(self):
+        """ Test normal use of the save_to_file method
+            """
+        r1 = Square(8, 2, 2, 15)
+        r2 = Square(7, 1, 3, 16)
+        Square.save_to_file([r1, r2])
+        self.assertTrue(file_exists("Square.json"))
 
     def test_save_to_file_no_arguments(self):
         """ Check the save_to_file method without arguments"""
@@ -122,6 +134,49 @@ class TestBase(unittest.TestCase):
         r = Square(3)
         r.save_to_file(None)
         self.assertTrue(file_exists("Square.json"))
+
+    def test_from_json_string(self):
+        """ Test the normal use for from_json_string method
+            """
+        dict_list = [
+            {'id': 10, 'size': 15, 'x': 1, 'y': 2},
+            {'id': 7, 'size': 14, 'x': 2, 'y': 1, }
+        ]
+        json_str = Base.to_json_string(dict_list)
+        json_dict_list = Base.from_json_string(json_str)
+
+        self.assertIsInstance(json_dict_list, list)
+        self.assertIsInstance(json_dict_list[0], dict)
+        self.assertIsInstance(json_dict_list[1], dict)
+
+    def test_from_json_string_none_empty(self):
+        """ Test from_json_string method for None or empty argument
+            """
+        json_dict_list = Base.from_json_string(None)
+        self.assertIsInstance(json_dict_list, list)
+
+        json_dict_list = Base.from_json_string([])
+        self.assertIsInstance(json_dict_list, list)
+
+        with self.assertRaises(TypeError):
+            json_dict_list = Base.from_json_string()
+
+    def test_from_json_string_wrong_type(self):
+        """ Test for passing wrong data type to from_json_string method
+            """
+        with self.assertRaises(TypeError):
+            json_dict_list = Base.from_json_string([("r1"), ("r2")])
+
+    def test_create(self):
+        """ Test normal use of the create method
+            """
+        r1 = Square(8, 2, 2)
+        r1_dict = r1.to_dictionary()
+        r2 = Square.create(**r1_dict)
+        print_r2 = "[Square] (1) 2/2 - 8"
+
+        self.assertIsInstance(r2, Square)
+        self.assertEqual(r2.__str__(), print_r2)
 
     def test_create_without_dict(self):
         """ Check the create method passing a square
@@ -144,12 +199,12 @@ class TestBase(unittest.TestCase):
             """
         r1 = Square(4, 5, 9, 30)
         r2 = Square(7, 3, 8, 30)
-        list_r_input = [r1, r2]
-        Square.save_to_file(list_r_input)
-        list_r_output = Square.load_from_file()
+        r_input = [r1, r2]
+        Square.save_to_file(r_input)
+        r_output = Square.load_from_file()
 
-        self.assertIsInstance(list_r_output, list)
-        self.assertFalse(len(list_r_output) == 0)
+        self.assertIsInstance(r_output, list)
+        self.assertFalse(len(r_output) == 0)
 
     def test_load_from_file_empty_file(self):
         """ Check if load_from_file method works without a file
