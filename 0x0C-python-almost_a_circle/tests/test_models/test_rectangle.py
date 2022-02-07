@@ -4,11 +4,12 @@
 
 import unittest
 import pep8
+import inspect
 from io import StringIO
 from unittest.mock import patch
 from models import rectangle
 from models.base import Base
-from models.rectangle import Rectangle
+Rectangle = rectangle.Rectangle
 
 
 class TestRectangle(unittest.TestCase):
@@ -28,6 +29,14 @@ class TestRectangle(unittest.TestCase):
         """ Test if Rectangle class is documented
             """
         self.assertTrue(Rectangle.__doc__)
+
+
+    def test_methods_documentation(self):
+        """ Test if all Rectangle methods are documented
+            """
+        methods = inspect.getmembers(Rectangle)
+        for method in methods:
+            self.assertTrue(inspect.getdoc(method))
 
     def test_pep8_conformance(self):
         """ Test that we conform to PEP8

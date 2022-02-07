@@ -4,10 +4,11 @@
 
 import unittest
 import pep8
+import inspect
 from models import base
-from models.base import Base
 from models.square import Square
 from os.path import exists as file_exists
+Base = base.Base
 
 
 class TestBase(unittest.TestCase):
@@ -27,6 +28,13 @@ class TestBase(unittest.TestCase):
         """ Test if Base class is documented
             """
         self.assertTrue(Base.__doc__)
+
+    def test_methods_documentation(self):
+        """ Test if all Base methods are documented
+            """
+        methods = inspect.getmembers(Base)
+        for method in methods:
+            self.assertTrue(inspect.getdoc(method))
 
     def test_pep8_conformance(self):
         """ Test that we conform to PEP8

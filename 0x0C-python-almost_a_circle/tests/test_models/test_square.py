@@ -4,11 +4,12 @@
 
 import unittest
 import pep8
+import inspect
 from io import StringIO
 from unittest.mock import patch
 from models import square
 from models.base import Base
-from models.square import Square
+Square = square.Square
 
 
 class TestSquare(unittest.TestCase):
@@ -28,6 +29,13 @@ class TestSquare(unittest.TestCase):
         """ Test if Square class is documented
             """
         self.assertTrue(Square.__doc__)
+
+    def test_methods_documentation(self):
+        """ Test if all Base methods are documented
+            """
+        methods = inspect.getmembers(Square)
+        for method in methods:
+            self.assertTrue(inspect.getdoc(method))
 
     def test_pep8_conformance(self):
         """ Test that we conform to PEP8
