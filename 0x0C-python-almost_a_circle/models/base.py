@@ -52,10 +52,10 @@ class Base:
     def create(cls, **dictionary):
         """ Returns an instance width the attributes setted
             """
-        if cls.__name__ == "Square":
-            dummy = cls(2)
         if cls.__name__ == "Rectangle":
             dummy = cls(2, 2)
+        if cls.__name__ == "Square":
+            dummy = cls(2)
 
         dummy.update(**dictionary)
         return dummy
