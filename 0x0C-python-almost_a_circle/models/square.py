@@ -16,7 +16,7 @@ class Square(Rectangle):
 
     @property
     def size(self):
-        """ Define the size
+        """ Define the size attribute
             """
         return self.width
 
@@ -28,7 +28,7 @@ class Square(Rectangle):
         self.height = value
 
     def __str__(self):
-        """ Print a representation of a square
+        """ Set the standar values for the print function
             """
         s_id = "({}) ".format(self.id)
         s_xy = "{}/{} - ".format(self.x, self.y)

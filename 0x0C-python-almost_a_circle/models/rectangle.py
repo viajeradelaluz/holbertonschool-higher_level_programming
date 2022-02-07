@@ -19,13 +19,13 @@ class Rectangle(Base):
 
     @property
     def width(self):
-        """ Width of the Rectangle
+        """ Define the width attribute
             """
         return self.__width
 
     @width.setter
     def width(self, value):
-        """Width methods
+        """ Set the width methods
             """
         if not isinstance(value, int):
             raise TypeError("width must be an integer")
@@ -35,13 +35,13 @@ class Rectangle(Base):
 
     @property
     def height(self):
-        """ Height of the Rectangle
+        """ Define the height attribute
             """
         return self.__height
 
     @height.setter
     def height(self, value):
-        """Height methods
+        """ Set the height methods
             """
         if not isinstance(value, int):
             raise TypeError("height must be an integer")
@@ -51,13 +51,13 @@ class Rectangle(Base):
 
     @property
     def x(self):
-        """ x of the Rectangle
+        """ Set the x attribute
             """
         return self.__x
 
     @x.setter
     def x(self, value):
-        """x methods
+        """ Define x methods
             """
         if not isinstance(value, int):
             raise TypeError("x must be an integer")
@@ -67,13 +67,13 @@ class Rectangle(Base):
 
     @property
     def y(self):
-        """ y of the Rectangle
+        """ Define y attribute
             """
         return self.__y
 
     @y.setter
     def y(self, value):
-        """y methods
+        """ Set y methods
             """
         if not isinstance(value, int):
             raise TypeError("y must be an integer")
@@ -87,7 +87,7 @@ class Rectangle(Base):
         return self.__width * self.__height
 
     def display(self):
-        """ Print stdout the Rectangle
+        """ Print a Rectangle instance to stdout
             """
         to_print = self.__y * "\n"
         for i in range(self.__height):
@@ -97,7 +97,7 @@ class Rectangle(Base):
         print(to_print, end="")
 
     def __str__(self):
-        """ Set the print function
+        """ Set the standar values for the print function
             """
         s_id = "({}) ".format(self.id)
         s_xy = "{}/{} - ".format(self.__x, self.__y)
