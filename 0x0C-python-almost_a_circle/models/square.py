@@ -18,18 +18,14 @@ class Square(Rectangle):
     def size(self):
         """ Define the size
             """
-        return self.__width
+        return self.width
 
     @size.setter
     def size(self, value):
         """ Define size behavior
             """
-        if not isinstance(value, int):
-            raise TypeError("width must be an integer")
-        if value <= 0:
-            raise ValueError("width must be > 0")
-        self.__width = value
-        self.__height = value
+        self.width = value
+        self.height = value
 
     def __str__(self):
         """ Print a representation of a square
@@ -54,7 +50,9 @@ class Square(Rectangle):
     def to_dictionary(self):
         """ Returns a dictionary representation
             """
-        d = {}
-        d.update(id=self.id, size=self.size,
-                 x=self.x, y=self.y)
+        d = {
+            'id': self.id, 'size': self.size,
+            'x': self.x, 'y': self.y
+        }
+
         return d
