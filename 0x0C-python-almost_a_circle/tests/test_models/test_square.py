@@ -262,13 +262,13 @@ class TestSquare(unittest.TestCase):
     def test_save_to_file_none(self):
         """ Check the save_to_file method with None
             """
-        r = Square(8, 2, 2, 15)
-        r.save_to_file(None)
-        self.assertTrue(file_exists("Square.json"))
+        Square.save_to_file(None)
+        with open("Square.json", 'r', encoding='utf-8') as f:
+            self.assertEqual("[]", f.read())
 
     def test_save_to_file_empty(self):
         """ Check the save_to_file method with None
             """
-        r = Square(8, 2, 2, 15)
-        r.save_to_file([])
-        self.assertTrue(file_exists("Square.json"))
+        Square.save_to_file([])
+        with open("Square.json", 'r', encoding='utf-8') as f:
+            self.assertEqual("[]", f.read())

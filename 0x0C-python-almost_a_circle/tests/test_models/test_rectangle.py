@@ -274,13 +274,13 @@ class TestRectangle(unittest.TestCase):
     def test_save_to_file_none(self):
         """ Check the save_to_file method with None
             """
-        r = Rectangle(8, 16, 2, 2, 15)
-        r.save_to_file(None)
-        self.assertTrue(file_exists("Rectangle.json"))
+        Rectangle.save_to_file(None)
+        with open("Rectangle.json", 'r', encoding='utf-8') as f:
+            self.assertEqual("[]", f.read())
 
     def test_save_to_file_empty(self):
         """ Check the save_to_file method with None
             """
-        r = Rectangle(8, 16, 2, 2, 15)
-        r.save_to_file([])
-        self.assertTrue(file_exists("Rectangle.json"))
+        Rectangle.save_to_file([])
+        with open("Rectangle.json", 'r', encoding='utf-8') as f:
+            self.assertEqual("[]", f.read())
