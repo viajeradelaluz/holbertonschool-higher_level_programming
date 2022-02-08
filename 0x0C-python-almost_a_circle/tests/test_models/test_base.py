@@ -8,6 +8,7 @@ import inspect
 import json
 from models import base
 from models.square import Square
+from models.rectangle import Rectangle
 from os.path import exists as file_exists
 Base = base.Base
 
