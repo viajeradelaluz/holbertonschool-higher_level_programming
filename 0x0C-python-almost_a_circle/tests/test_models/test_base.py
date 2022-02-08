@@ -48,8 +48,12 @@ class TestBase(unittest.TestCase):
     def test_basic_base_assigment(self):
         """ Create a basic Base instance
             """
-        b = Base()
-        self.assertEqual(b.id, 1)
+        b1 = Base()
+        b2 = Base()
+        b3 = Base(15)
+        self.assertEqual(b1.id, 1)
+        self.assertEqual(b2.id, 2)
+        self.assertEqual(b3.id, 15)
 
     def test_base_assigment_no_id(self):
         """  Create multiple basic Base instances

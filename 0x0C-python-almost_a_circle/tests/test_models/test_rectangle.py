@@ -7,6 +7,7 @@ import pep8
 import inspect
 from io import StringIO
 from unittest.mock import patch
+from os.path import exists as file_exists
 from models import rectangle
 from models.base import Base
 Rectangle = rectangle.Rectangle
@@ -49,6 +50,8 @@ class TestRectangle(unittest.TestCase):
         """ Test a rectangle instance only with width and height
             """
         r = Rectangle(13, 6)
+        self.assertIsInstance(r, Rectangle)
+        self.assertTrue(issubclass(type(r), Base))
         self.assertEqual(r.width, 13)
         self.assertEqual(r.height, 6)
         self.assertEqual(r.x, 0)
@@ -94,12 +97,6 @@ class TestRectangle(unittest.TestCase):
             r = Rectangle('10', 2)
         with self.assertRaises(TypeError):
             r = Rectangle(10, '2')
-        with self.assertRaises(TypeError):
-            r = Rectangle(3.4, 5.2)
-        with self.assertRaises(TypeError):
-            r = Rectangle((10, 2), (6, 4))
-        with self.assertRaises(TypeError):
-            r = Rectangle([10, 2, 6, 4])
 
     def test_rectangle_instance_zero_width_height(self):
         """ Test a rectangle instance with zero number at width or height
@@ -137,10 +134,6 @@ class TestRectangle(unittest.TestCase):
     def test_rectangle_instance_wrong_type_x_y(self):
         """ Test a rectangle instance with wrong x, y parameters
             """
-        with self.assertRaises(TypeError):
-            r = Rectangle(8, 7, 3.5, 7.8)
-        with self.assertRaises(TypeError):
-            r = Rectangle(15, 4, (4, 8))
         with self.assertRaises(TypeError):
             r = Rectangle(15, 4, '7', 6)
         with self.assertRaises(TypeError):
@@ -224,6 +217,11 @@ class TestRectangle(unittest.TestCase):
         r.update(10, 4, 9, 1, 1)
         print_r = "[Rectangle] (10) 1/1 - 4/9"
         self.assertEqual(r.__str__(), print_r)
+        self.assertEqual(r.id, 10)
+        self.assertEqual(r.width, 4)
+        self.assertEqual(r.height, 9)
+        self.assertEqual(r.x, 1)
+        self.assertEqual(r.y, 1)
 
     def test_rectangle_update_empty_arguments(self):
         """ Test the update method without any arguments
@@ -235,9 +233,12 @@ class TestRectangle(unittest.TestCase):
         """ Test update method by dictionary keys
             """
         r = Rectangle(25, 3)
-        r.update(id=25, width=18)
+        r.update(id=25, width=18, height=4, x=2, y=2)
         self.assertEqual(r.id, 25)
         self.assertEqual(r.width, 18)
+        self.assertEqual(r.height, 4)
+        self.assertEqual(r.x, 2)
+        self.assertEqual(r.y, 2)
 
     def test_update_mixing_args_kwargs(self):
         """ Test update method mixing args and kwargs
@@ -260,3 +261,18 @@ class TestRectangle(unittest.TestCase):
         r = Rectangle(8, 24)
         with self.assertRaises(TypeError):
             r_dict = r.to_dictionary(width=6, height=9)
+
+    def test_rectangle_save_to_file(self):
+        """ Test cases for the save_to_file method
+            """
+        r1 = Rectangle(8, 16, 2, 2, 15)
+        r2 = Rectangle(7, 16, 3, 3, 15)
+
+        Rectangle.save_to_file([r1, r2])
+        self.assertTrue(file_exists("Rectangle.json"))
+
+        Rectangle.save_to_file(None)
+        self.assertTrue(file_exists("Rectangle.json"))
+
+        Rectangle.save_to_file([])
+        self.assertTrue(file_exists("Rectangle.json"))

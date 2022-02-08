@@ -7,6 +7,7 @@ import pep8
 import inspect
 from io import StringIO
 from unittest.mock import patch
+from os.path import exists as file_exists
 from models import square
 from models.base import Base
 Square = square.Square
@@ -248,3 +249,18 @@ class TestSquare(unittest.TestCase):
         r = Square(8)
         with self.assertRaises(TypeError):
             r_dict = r.to_dictionary(size=9)
+
+    def test_save_to_file_none(self):
+        """ Test cases for the save_to_file method
+            """
+        r1 = Square(8, 2, 2, 15)
+        r2 = Square(7, 3, 3, 15)
+
+        Square.save_to_file([r1, r2])
+        self.assertTrue(file_exists("Square.json"))
+
+        Square.save_to_file(None)
+        self.assertTrue(file_exists("Square.json"))
+
+        Square.save_to_file([])
+        self.assertTrue(file_exists("Square.json"))
