@@ -33,7 +33,7 @@ class Base:
         filename = "{}.json".format(cls.__name__)
 
         new_list = []
-        if list_objs is not None:
+        if list_objs is not None and len(list_objs) > 0:
             for instance in list_objs:
                 new_list.append(cls.to_dictionary(instance))
 
