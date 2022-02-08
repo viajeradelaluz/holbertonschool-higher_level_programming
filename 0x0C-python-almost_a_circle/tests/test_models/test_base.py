@@ -119,6 +119,17 @@ class TestBase(unittest.TestCase):
         Square.save_to_file([r1, r2])
         self.assertTrue(file_exists("Square.json"))
 
+    def test_save_to_file_empty(self):
+        """ Check the save_to_file method with empty list
+            """
+        Rectangle.save_to_file([])
+        with open("Rectangle.json", 'r', encoding='utf-8') as f:
+            self.assertEqual("[]", f.read())
+
+        Square.save_to_file([])
+        with open("Square.json", 'r', encoding='utf-8') as f:
+            self.assertEqual("[]", f.read())
+
     def test_save_to_file_no_arguments(self):
         """ Check the save_to_file method without arguments"""
         r = Square(8)
@@ -135,9 +146,13 @@ class TestBase(unittest.TestCase):
     def test_save_to_file_none(self):
         """ Check the save_to_file method with None
             """
-        r = Square(3)
-        r.save_to_file(None)
-        self.assertTrue(file_exists("Square.json"))
+        Rectangle.save_to_file(None)
+        with open("Rectangle.json", 'r', encoding='utf-8') as f:
+            self.assertEqual("[]", f.read())
+
+        Square.save_to_file(None)
+        with open("Square.json", 'r', encoding='utf-8') as f:
+            self.assertEqual("[]", f.read())
 
     def test_from_json_string(self):
         """ Test the normal use for from_json_string method
