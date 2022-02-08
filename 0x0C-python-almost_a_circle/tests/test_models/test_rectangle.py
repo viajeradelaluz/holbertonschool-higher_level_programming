@@ -2,12 +2,11 @@
 """ Module for Unittest for Rectangle class
     """
 import unittest
-import pep8
 import inspect
+import os
 
 from io import StringIO
 from unittest.mock import patch
-from os.path import exists as file_exists
 from models import rectangle
 from models.base import Base
 
@@ -38,14 +37,6 @@ class TestRectangle(unittest.TestCase):
         methods = inspect.getmembers(Rectangle)
         for method in methods:
             self.assertTrue(inspect.getdoc(method))
-
-    def test_pep8_conformance(self):
-        """ Test that we conform to PEP8
-            """
-        pep8style = pep8.StyleGuide(quiet=True)
-        result = pep8style.check_files(['models/rectangle.py'])
-        self.assertEqual(result.total_errors, 0,
-                         "Found code style errors (and warnings).")
 
     def test_rectangle_simple_instance(self):
         """ Test a rectangle instance only with width and height
@@ -268,21 +259,31 @@ class TestRectangle(unittest.TestCase):
             """
         r1 = Rectangle(8, 16, 2, 2, 15)
         r2 = Rectangle(7, 16, 3, 3, 15)
+        if os.path.exists("Rectangle.json"):
+            os.remove("Rectangle.json")
+
         Rectangle.save_to_file([r1, r2])
-        self.assertTrue(file_exists("Rectangle.json"))
+        self.assertTrue(os.path.exists("Rectangle.json"))
 
     def test_save_to_file_none(self):
         """ Check the save_to_file method with None
             """
+        if os.path.exists("Rectangle.json"):
+            os.remove("Rectangle.json")
+
         Rectangle.save_to_file(None)
-        self.assertTrue(file_exists("Rectangle.json"))
+        self.assertTrue(os.path.exists("Rectangle.json"))
         with open("Rectangle.json", 'r', encoding='utf-8') as f:
             self.assertEqual("[]", f.read())
 
     def test_save_to_file_empty(self):
         """ Check the save_to_file method with empty argument
             """
-        Rectangle.save_to_file([])
-        self.assertTrue(file_exists("Rectangle.json"))
+        r_list = []
+        if os.path.exists("Rectangle.json"):
+            os.remove("Rectangle.json")
+
+        Rectangle.save_to_file(r_list)
+        self.assertTrue(os.path.exists("Rectangle.json"))
         with open("Rectangle.json", 'r', encoding='utf-8') as f:
             self.assertEqual("[]", f.read())

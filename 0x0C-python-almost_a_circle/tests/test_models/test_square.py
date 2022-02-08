@@ -2,12 +2,11 @@
 """ Module for Unittest for Square class
     """
 import unittest
-import pep8
 import inspect
+import os
 
 from io import StringIO
 from unittest.mock import patch
-from os.path import exists as file_exists
 from models import square
 from models.base import Base
 
@@ -38,14 +37,6 @@ class TestSquare(unittest.TestCase):
         methods = inspect.getmembers(Square)
         for method in methods:
             self.assertTrue(inspect.getdoc(method))
-
-    def test_pep8_conformance(self):
-        """ Test that we conform to PEP8
-            """
-        pep8style = pep8.StyleGuide(quiet=True)
-        result = pep8style.check_files(['models/square.py'])
-        self.assertEqual(result.total_errors, 0,
-                         "Found code style errors (and warnings).")
 
     def test_square_simple_instance(self):
         """ Test a Square instance only with size
@@ -256,21 +247,31 @@ class TestSquare(unittest.TestCase):
             """
         r1 = Square(8, 2, 2, 15)
         r2 = Square(7, 3, 3, 15)
+        if os.path.exists("Square.json"):
+            os.remove("Square.json")
+
         Square.save_to_file([r1, r2])
-        self.assertTrue(file_exists("Square.json"))
+        self.assertTrue(os.path.exists("Square.json"))
 
     def test_save_to_file_none(self):
         """ Check the save_to_file method with empty argument
             """
+        if os.path.exists("Square.json"):
+            os.remove("Square.json")
+
         Square.save_to_file(None)
-        self.assertTrue(file_exists("Square.json"))
+        self.assertTrue(os.path.exists("Square.json"))
         with open("Square.json", 'r', encoding='utf-8') as f:
             self.assertEqual("[]", f.read())
 
     def test_save_to_file_empty(self):
         """ Check the save_to_file method with None
             """
-        Square.save_to_file([])
-        self.assertTrue(file_exists("Square.json"))
+        r_list = []
+        if os.path.exists("Square.json"):
+            os.remove("Square.json")
+
+        Square.save_to_file(r_list)
+        self.assertTrue(os.path.exists("Square.json"))
         with open("Square.json", 'r', encoding='utf-8') as f:
             self.assertEqual("[]", f.read())

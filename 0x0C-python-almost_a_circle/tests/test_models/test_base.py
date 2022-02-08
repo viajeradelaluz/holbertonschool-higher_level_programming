@@ -2,14 +2,13 @@
 """ Module with Unittest for Base class
     """
 import unittest
-import pep8
 import inspect
 import json
+import os
 
 from models import base
 from models.square import Square
 from models.rectangle import Rectangle
-from os.path import exists as file_exists
 
 Base = base.Base
 
@@ -38,14 +37,6 @@ class TestBase(unittest.TestCase):
         methods = inspect.getmembers(Base)
         for method in methods:
             self.assertTrue(inspect.getdoc(method))
-
-    def test_pep8_conformance(self):
-        """ Test that we conform to PEP8
-            """
-        pep8style = pep8.StyleGuide(quiet=True)
-        result = pep8style.check_files(['models/base.py'])
-        self.assertEqual(result.total_errors, 0,
-                         "Found code style errors (and warnings).")
 
     def test_basic_base_assigment(self):
         """ Create a basic Base instance
@@ -116,6 +107,9 @@ class TestBase(unittest.TestCase):
     def test_save_to_file_no_arguments(self):
         """ Check the save_to_file method without arguments"""
         r = Square(8)
+        if os.path.exists("Square.json"):
+            os.remove("Square.json")
+
         with self.assertRaises(TypeError):
             r.save_to_file()
 
@@ -123,6 +117,9 @@ class TestBase(unittest.TestCase):
         """ Check the save_to_file method with more arguments
             """
         r = Rectangle(4, 5)
+        if os.path.exists("Rectangle.json"):
+            os.remove("Rectangle.json")
+
         with self.assertRaises(TypeError):
             r.save_to_file([r], [])
 
