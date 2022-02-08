@@ -1,15 +1,16 @@
 #!usr/bin/python3
 """ Module for Unittest for Square class
     """
-
 import unittest
 import pep8
 import inspect
+
 from io import StringIO
 from unittest.mock import patch
 from os.path import exists as file_exists
 from models import square
 from models.base import Base
+
 Square = square.Square
 
 

@@ -1,15 +1,16 @@
 #!usr/bin/python3
 """ Module with Unittest for Base class
     """
-
 import unittest
 import pep8
 import inspect
 import json
+
 from models import base
 from models.square import Square
 from models.rectangle import Rectangle
 from os.path import exists as file_exists
+
 Base = base.Base
 
 
@@ -112,25 +113,6 @@ class TestBase(unittest.TestCase):
         dict_r = json.loads(json_str)
         self.assertEqual(dict_r, [r_dict])
 
-    def test_save_to_file(self):
-        """ Test normal use of the save_to_file method
-            """
-        r1 = Square(8, 2, 2, 15)
-        r2 = Square(7, 1, 3, 16)
-        Square.save_to_file([r1, r2])
-        self.assertTrue(file_exists("Square.json"))
-
-    def test_save_to_file_empty(self):
-        """ Check the save_to_file method with empty list
-            """
-        Rectangle.save_to_file([])
-        with open("Rectangle.json", 'r', encoding='utf-8') as f:
-            self.assertEqual("[]", f.read())
-
-        Square.save_to_file([])
-        with open("Square.json", 'r', encoding='utf-8') as f:
-            self.assertEqual("[]", f.read())
-
     def test_save_to_file_no_arguments(self):
         """ Check the save_to_file method without arguments"""
         r = Square(8)
@@ -140,20 +122,9 @@ class TestBase(unittest.TestCase):
     def test_save_to_file_more_arguments(self):
         """ Check the save_to_file method with more arguments
             """
-        r = Square(5)
+        r = Rectangle(4, 5)
         with self.assertRaises(TypeError):
             r.save_to_file([r], [])
-
-    def test_save_to_file_none(self):
-        """ Check the save_to_file method with None
-            """
-        Rectangle.save_to_file(None)
-        with open("Rectangle.json", 'r', encoding='utf-8') as f:
-            self.assertEqual("[]", f.read())
-
-        Square.save_to_file(None)
-        with open("Square.json", 'r', encoding='utf-8') as f:
-            self.assertEqual("[]", f.read())
 
     def test_from_json_string(self):
         """ Test the normal use for from_json_string method

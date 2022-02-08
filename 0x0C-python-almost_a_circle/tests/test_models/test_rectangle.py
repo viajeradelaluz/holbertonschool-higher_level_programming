@@ -1,15 +1,16 @@
 #!usr/bin/python3
 """ Module for Unittest for Rectangle class
     """
-
 import unittest
 import pep8
 import inspect
+
 from io import StringIO
 from unittest.mock import patch
 from os.path import exists as file_exists
 from models import rectangle
 from models.base import Base
+
 Rectangle = rectangle.Rectangle
 
 
