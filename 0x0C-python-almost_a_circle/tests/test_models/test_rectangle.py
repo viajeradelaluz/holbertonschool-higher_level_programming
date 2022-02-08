@@ -268,7 +268,6 @@ class TestRectangle(unittest.TestCase):
             """
         r1 = Rectangle(8, 16, 2, 2, 15)
         r2 = Rectangle(7, 16, 3, 3, 15)
-
         Rectangle.save_to_file([r1, r2])
         self.assertTrue(file_exists("Rectangle.json"))
 
@@ -276,12 +275,14 @@ class TestRectangle(unittest.TestCase):
         """ Check the save_to_file method with None
             """
         Rectangle.save_to_file(None)
+        self.assertTrue(file_exists("Rectangle.json"))
         with open("Rectangle.json", 'r', encoding='utf-8') as f:
             self.assertEqual("[]", f.read())
 
     def test_save_to_file_empty(self):
-        """ Check the save_to_file method with None
+        """ Check the save_to_file method with empty argument
             """
         Rectangle.save_to_file([])
+        self.assertTrue(file_exists("Rectangle.json"))
         with open("Rectangle.json", 'r', encoding='utf-8') as f:
             self.assertEqual("[]", f.read())

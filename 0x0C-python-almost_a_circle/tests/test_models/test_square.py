@@ -256,14 +256,14 @@ class TestSquare(unittest.TestCase):
             """
         r1 = Square(8, 2, 2, 15)
         r2 = Square(7, 3, 3, 15)
-
         Square.save_to_file([r1, r2])
         self.assertTrue(file_exists("Square.json"))
 
     def test_save_to_file_none(self):
-        """ Check the save_to_file method with None
+        """ Check the save_to_file method with empty argument
             """
         Square.save_to_file(None)
+        self.assertTrue(file_exists("Square.json"))
         with open("Square.json", 'r', encoding='utf-8') as f:
             self.assertEqual("[]", f.read())
 
@@ -271,5 +271,6 @@ class TestSquare(unittest.TestCase):
         """ Check the save_to_file method with None
             """
         Square.save_to_file([])
+        self.assertTrue(file_exists("Square.json"))
         with open("Square.json", 'r', encoding='utf-8') as f:
             self.assertEqual("[]", f.read())
