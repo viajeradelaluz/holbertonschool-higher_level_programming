@@ -262,8 +262,8 @@ class TestRectangle(unittest.TestCase):
         with self.assertRaises(TypeError):
             r_dict = r.to_dictionary(width=6, height=9)
 
-    def test_rectangle_save_to_file(self):
-        """ Test cases for the save_to_file method
+    def test_save_to_file(self):
+        """ Test normal use of the save_to_file method
             """
         r1 = Rectangle(8, 16, 2, 2, 15)
         r2 = Rectangle(7, 16, 3, 3, 15)
@@ -271,8 +271,16 @@ class TestRectangle(unittest.TestCase):
         Rectangle.save_to_file([r1, r2])
         self.assertTrue(file_exists("Rectangle.json"))
 
-        Rectangle.save_to_file(None)
+    def test_save_to_file_none(self):
+        """ Check the save_to_file method with None
+            """
+        r = Rectangle(8, 16, 2, 2, 15)
+        r.save_to_file(None)
         self.assertTrue(file_exists("Rectangle.json"))
 
-        Rectangle.save_to_file([])
+    def test_save_to_file_empty(self):
+        """ Check the save_to_file method with None
+            """
+        r = Rectangle(8, 16, 2, 2, 15)
+        r.save_to_file([])
         self.assertTrue(file_exists("Rectangle.json"))

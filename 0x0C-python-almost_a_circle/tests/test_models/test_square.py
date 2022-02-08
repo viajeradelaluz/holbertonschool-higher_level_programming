@@ -250,8 +250,8 @@ class TestSquare(unittest.TestCase):
         with self.assertRaises(TypeError):
             r_dict = r.to_dictionary(size=9)
 
-    def test_save_to_file_none(self):
-        """ Test cases for the save_to_file method
+    def test_save_to_file(self):
+        """ Test normal use of the save_to_file method
             """
         r1 = Square(8, 2, 2, 15)
         r2 = Square(7, 3, 3, 15)
@@ -259,8 +259,16 @@ class TestSquare(unittest.TestCase):
         Square.save_to_file([r1, r2])
         self.assertTrue(file_exists("Square.json"))
 
-        Square.save_to_file(None)
+    def test_save_to_file_none(self):
+        """ Check the save_to_file method with None
+            """
+        r = Square(8, 2, 2, 15)
+        r.save_to_file(None)
         self.assertTrue(file_exists("Square.json"))
 
-        Square.save_to_file([])
+    def test_save_to_file_empty(self):
+        """ Check the save_to_file method with None
+            """
+        r = Square(8, 2, 2, 15)
+        r.save_to_file([])
         self.assertTrue(file_exists("Square.json"))
