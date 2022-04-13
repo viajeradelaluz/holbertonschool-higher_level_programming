@@ -3,6 +3,7 @@
  * the tag DIV#add_item:
  * - The new element must be: <li>Item</li>
  * - The new element must be added to UL.my_list
+ * Please test with this HTML file 5-main.html
  */
 
 window.onload = () => {
