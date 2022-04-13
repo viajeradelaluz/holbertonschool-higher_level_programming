@@ -14,3 +14,7 @@
 - How to manipulate JSON data
 - How to use `request` and fetch API
 - How to read and write a file using `fs` module
+
+## File description
+
+Each file corresponds to a different script. Inside each file is the complete description of its execution and requirements.
