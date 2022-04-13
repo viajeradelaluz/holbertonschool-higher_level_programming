@@ -17,6 +17,9 @@ request(url, function (err, response, body) {
     const usersTaksOK = {};
 
     for (const item of json) {
+      if (!item.completed) {
+        continue;
+      }
       const { userId, completed } = item;
       if (usersTaksOK[userId] === undefined) {
         usersTaksOK[userId] = 0;
