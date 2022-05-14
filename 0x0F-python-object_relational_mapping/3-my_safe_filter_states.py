@@ -28,7 +28,7 @@ def main():
 
     states = cursor.fetchall()
     for state in states:
-        if state[1] == 'N':
+        if state[1] == argv[4]:
             print(state)
 
     cursor.close()
