@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 """ This module solves the following requirements and relies on the file
     task/0-select_states.sql
 
