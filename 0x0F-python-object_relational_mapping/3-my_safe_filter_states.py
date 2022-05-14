@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 """ This module solves the following requirements and relies on the file
     task/0-select_states.sql
 
@@ -23,8 +23,8 @@ def main():
 
     cursor = db.cursor()
     cursor.execute(
-        'SELECT * FROM states WHERE name = "{}"'
-        'ORDER BY id ASC'.format(argv[4]))
+        'SELECT * FROM states WHERE name LIKE %s ORDER BY id ASC;',
+        (argv[4], ))
 
     states = cursor.fetchall()
     for state in states:
