@@ -22,7 +22,8 @@ def main():
 
     cursor = db.cursor()
     cursor.execute(
-        f'SELECT * FROM states WHERE name = "{argv[4]}" ORDER BY id ASC;')
+        'SELECT * FROM states WHERE name = "{}"'
+        'ORDER BY id ASC;'.format(argv[4]))
 
     states = cursor.fetchall()
     for state in states:
