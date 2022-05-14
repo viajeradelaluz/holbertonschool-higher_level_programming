@@ -1,4 +1,10 @@
-# 0x0F. Python - Object-relational mapping
+<br>
+
+<h1 align='center'>Python<br>ORM - Object-relational mapping<br>
+<img src='https://img.shields.io/badge/Python-FFD43B?style=for-the-badge&logo=python&logoColor=blue'><img src='https://img.shields.io/badge/MySQL-005C84?style=for-the-badge&logo=mysql&logoColor=white'>
+</h1>
+
+<br>
 
 ## Background Context
 
@@ -15,7 +21,9 @@ The biggest difference is: no more SQL queries! Indeed, the purpose of an ORM is
 **Read or watch**
 
 - [Object-relational Mappers (ORMs)](https://www.fullstackpython.com/object-relational-mappers-orms.html)
+- [Python and MySQL Database: A Practical Introduction](https://realpython.com/python-mysql/)
 - [Python MySQL](https://www.mikusa.com/python-mysql-docs/index.html)
+- [MySQLdb's documentation!](https://mysqlclient.readthedocs.io/)
 - [SQLAlchemy Documentation](https://docs.sqlalchemy.org/en/14/)
 - [SQLAlchemy Tutorial](https://j2logo.com/python/sqlalchemy-tutorial-de-python-sqlalchemy-guia-de-inicio/)
 - [Flask SQLAlchemy](https://www.youtube.com/playlist?list=PLXmMXHVSvS-BlLA5beNJojJLlpE0PJgCW)
@@ -58,3 +66,4 @@ $ python3
 >>> sqlalchemy.__version__ 
 '1.4.22'
 ``bash
+```
