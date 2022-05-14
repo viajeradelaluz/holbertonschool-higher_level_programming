@@ -2,9 +2,9 @@
 """ This module solves the following requirements and relies on the file
     task/0-select_states.sql
 
-Once again, write a script that takes in arguments and displays all values in the 
-states table of hbtn_0e_0_usa where name matches the argument. But this time, 
-write one that is safe from MySQL injections!
+Once again, write a script that takes in arguments and displays all values in
+the states table of hbtn_0e_0_usa where name matches the argument.
+But this time, write one that is safe from MySQL injections!
     - Take 4 arguments: mysql username, mysql password, database name
       and state name searched (safe from MySQL injection)
     - You must use the module MySQLdb (import MySQLdb)
@@ -23,13 +23,12 @@ def main():
 
     cursor = db.cursor()
     cursor.execute(
-        'SELECT * FROM states WHERE name = "{}"'
-        'ORDER BY id ASC'.format(argv[4]))
+        'SELECT * FROM states WHERE name LIKE %s'
+        'ORDER BY id ASC', (argv[4]))
 
     states = cursor.fetchall()
     for state in states:
-        if state[1] == argv[4]:
-            print(state)
+        print(state)
 
     cursor.close()
     db.close()
