@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 """ This module solves the following requirements and relies on the file
     task/0-select_states.sql
 
@@ -21,11 +21,12 @@ def main():
 
     cursor = db.cursor()
     cursor.execute(
-        'SELECT * FROM states WHERE name LIKE "N%" ORDER BY id ASC;')
+        'SELECT * FROM states ORDER BY id ASC;')
 
     states = cursor.fetchall()
     for state in states:
-        print(state)
+        if state[1].startswith('N'):
+            print(state)
 
     cursor.close()
     db.close()
