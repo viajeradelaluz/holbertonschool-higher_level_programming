@@ -5,6 +5,7 @@
 - [MDN HTTP Headers](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers)
 - [HTTP (HyperText Transfer Protocol)](https://www3.ntu.edu.sg/home/ehchua/programming/webprogramming/HTTP_Basics.html)
 - [MDN HTTP cookies](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies)
+- [Curl Command in Linux with Examples](https://linuxize.com/post/curl-command-examples/)
 - man `curl`
 
 ## Learning Objectives
