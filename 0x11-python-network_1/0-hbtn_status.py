@@ -8,17 +8,11 @@ Module that fetches https://intranet.hbtn.io/status
 
 from urllib import request
 
-
-def main():
-    call = request.Request('https://intranet.hbtn.io/status')
-    with request.urlopen(call) as response:
-        html = response.read()
-        print(
-            'Body response:\n'
-            '\t- type: {}\n'.format(type(html)),
-            '\t- content: {}\n'.format(html),
-            '\t- utf8 content: {}'.format(html.decode('utf8')))
-
-
-if __name__ == '__main__':
-    main()
+call = request.Request('https://intranet.hbtn.io/status')
+with request.urlopen(call) as response:
+    html = response.read()
+    print(
+        'Body response:\n'
+        '\t- type: {}\n'.format(type(html)),
+        '\t- content: {}\n'.format(html),
+        '\t- utf8 content: {}'.format(html.decode('utf8')))
