@@ -6,18 +6,17 @@ Module that fetches https://intranet.hbtn.io/status
     - You must use a with statement
 """
 
-from urllib import request
+import urllib.request
 
 
 def main():
-    with request.urlopen('https://intranet.hbtn.io/status') as response:
+    with urllib.request.urlopen('https://intranet.hbtn.io/status') as response:
         html = response.read()
         print(
             'Body response:\n'
             '\t- type: {}\n'.format(type(html)),
             '\t- content: {}\n'.format(html),
-            '\t- utf8 content: {}'.format(html.decode('utf8'))
-        )
+            '\t- utf8 content: {}'.format(html.decode('utf8')))
 
 
 if __name__ == '__main__':
