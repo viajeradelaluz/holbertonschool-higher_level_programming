@@ -6,6 +6,7 @@
 
 - [Quickstart with Requests package](https://docs.python.org/3/howto/urllib2.html)
 - [Requests package](https://docs.python-requests.org/en/master/)
+- [GitHub API](https://docs.github.com/en/rest/users)
 
 ## Learning Objectives
 
